@@ -2,7 +2,7 @@
 
 ## Description
 
-Course Design of my `Service Development Technology`.
+Course Design of the `Service Development Technology`.
 
 ## Installation
 
