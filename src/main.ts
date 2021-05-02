@@ -1,4 +1,9 @@
-import { INestApplication, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  INestApplication,
+  Logger,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -17,6 +22,18 @@ function createOpenApiDocument(app: INestApplication) {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      exceptionFactory: (errors) =>
+        new BadRequestException(
+          errors.map((error) => `${error.property} 字段验证失败`).join('; '),
+          '请求非法',
+        ),
+    }),
+  );
   const configService = app.get<ConfigService<Configuration>>(ConfigService);
   const { host, port, openApiPath } = configService.get<ServerConfig>('server');
 

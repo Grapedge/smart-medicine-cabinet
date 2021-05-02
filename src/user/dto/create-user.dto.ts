@@ -25,7 +25,6 @@ export class CreateUserDto {
 }
 
 export class CreateUserRsp {
-  id: string;
   name: string;
   phone: string;
 }
