@@ -26,6 +26,7 @@ import type { DatabaseConfig } from './config/database.config';
         const mongoDbUri = `mongodb://${user}:${password}@${host}:${port}/${database}`;
         return {
           uri: mongoDbUri,
+          useCreateIndex: true,
         };
       },
       inject: [ConfigService],

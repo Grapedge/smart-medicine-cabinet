@@ -28,6 +28,11 @@ database: # MongoDB
   user: smart-medicine-cabinet
   password: Your Mongo DB Password
   database: smart-medicine-cabinet
+auth:
+  issuer: smart-medicine-cabinet
+  secret: HelloWorld
+  accessTokenExpiresIn: 1d
+  refreshTokenExpiresIn: 30d
 ```
 
 Test the code:

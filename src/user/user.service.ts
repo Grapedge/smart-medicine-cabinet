@@ -3,11 +3,12 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './user.schema';
+import { User, UserDocument } from './user.schema';
+import type { IUserInfo } from './user.interface';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async create(createUserDto: CreateUserDto) {
     const phoneCount = await this.userModel.count({
@@ -25,18 +26,32 @@ export class UserService {
     return user;
   }
 
-  async findByPhone(phone: string) {
-    return this.userModel.findOne({
+  async findByPhone(phone: string): Promise<IUserInfo | null> {
+    const user = await this.userModel.findOne({
       phone,
     });
+    if (!user) return null;
+    return {
+      name: user.name,
+      phone: user.phone,
+    };
   }
 
-  async verifyUser(phone: string, password: string) {
+  /**
+   * 查找用户，并验证给定密码是否正确
+   * @param phone
+   * @param password 密码明文
+   * @returns
+   */
+  async findAndValidate(
+    phone: string,
+    password: string,
+  ): Promise<IUserInfo | null> {
     const signPass = sha256(password).toString();
     const user = await this.userModel.findOne({
       phone: phone,
       password: signPass,
     });
-    return !!user;
+    return user || null;
   }
 }

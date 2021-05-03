@@ -6,6 +6,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import type { IUserInfo } from '../user.interface';
 
 export class CreateUserDto {
   @IsString()
@@ -24,7 +25,7 @@ export class CreateUserDto {
   password: string;
 }
 
-export class CreateUserRsp {
+export class CreateUserRsp implements IUserInfo {
   name: string;
   phone: string;
 }

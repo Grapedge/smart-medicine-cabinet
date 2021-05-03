@@ -1,4 +1,66 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import type { AuthConfig } from 'src/config/auth.config';
+import type { Configuration } from 'src/config/configuration';
+import type { IUserInfo } from 'src/user/user.interface';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
-export class AuthService {}
+export class AuthService {
+  private authConfig: AuthConfig;
+
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+    configService: ConfigService<Configuration>,
+  ) {
+    this.authConfig = configService.get<AuthConfig>('auth');
+  }
+
+  async validateUser(
+    phone: string,
+    password: string,
+  ): Promise<IUserInfo | null> {
+    return this.userService.findAndValidate(phone, password);
+  }
+
+  async signAccessToken(user: IUserInfo) {
+    return this.jwtService.sign(
+      {
+        name: user.name,
+      },
+      {
+        issuer: 'smart_medicine_cabinet',
+        subject: user.phone,
+        secret: this.authConfig.secret,
+        expiresIn: this.authConfig.accessTokenExpiresIn,
+      },
+    );
+  }
+
+  async signRefreshToken(phone: string) {
+    return this.jwtService.sign(
+      {},
+      {
+        issuer: 'smart_medicine_cabinet',
+        subject: phone,
+        secret: this.authConfig.secret,
+        expiresIn: this.authConfig.refreshTokenExpiresIn,
+      },
+    );
+  }
+
+  async refreshAccessToken(refreshToken: string) {
+    try {
+      const payload = this.jwtService.verify(refreshToken);
+      const user = await this.userService.findByPhone(payload.sub);
+      return this.signAccessToken(user);
+    } catch (error) {
+      throw new UnauthorizedException(
+        '刷新令牌无效或已经失效，请重新登录',
+        'refresh_token_invalid',
+      );
+    }
+  }
+}

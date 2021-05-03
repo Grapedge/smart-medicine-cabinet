@@ -2,6 +2,7 @@ import { load as loadYaml } from 'yamljs';
 import { resolve } from 'path';
 import { DatabaseConfig } from './database.config';
 import { ServerConfig } from './server.config';
+import { AuthConfig } from './auth.config';
 import { IsDefined, IsIn, ValidateNested, validateSync } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
@@ -13,9 +14,14 @@ export class Configuration {
   @ValidateNested()
   @IsDefined()
   server: ServerConfig;
+
   @ValidateNested()
   @IsDefined()
   database: DatabaseConfig;
+
+  @ValidateNested()
+  auth: AuthConfig;
+
   @IsIn(NODE_ENVS)
   nodeEnv: typeof NODE_ENVS[number];
 }
