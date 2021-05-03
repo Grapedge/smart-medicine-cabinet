@@ -34,6 +34,7 @@
     "cookie-parser": "^1.4.5",
     "crypto-js": "^4.0.0",
     "mongoose": "^5.12.7",
+    "nanoid": "^3.1.22",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0",
