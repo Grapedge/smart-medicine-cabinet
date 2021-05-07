@@ -10,13 +10,15 @@
 
 ```plantuml
 @startuml
-
+left to right direction
 actor 用户 as U
+actor 设备 as D
 
 U --> (注册设备)
 U --> (修改设备)
 U --> (删除设备)
 U --> (查询设备)
+D --> (智能药品柜系统鉴权)
 @enduml
 ```
 
