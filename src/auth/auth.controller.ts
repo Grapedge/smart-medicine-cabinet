@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { JwtAuth } from 'src/core/decorators/jwt-auth.decorator';
-import { User } from 'src/user/user.schema';
+import { User } from 'src/user/schemas/user.schema';
 import { CurUser } from '../core/decorators/user.decorator';
 import { AuthService } from './auth.service';
 import { RefreshAccessTokenDto } from './dto/refresh-access-token.dto';

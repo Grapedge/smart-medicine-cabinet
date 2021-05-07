@@ -21,7 +21,7 @@ import { RemoveOneRsp } from 'src/core/dto/remove.dto';
 import { Role } from 'src/core/enums/role.enum';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './user.schema';
+import { User } from './schemas/user.schema';
 import { UserService } from './user.service';
 
 @ApiTags('用户')

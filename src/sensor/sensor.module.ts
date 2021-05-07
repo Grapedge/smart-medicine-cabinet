@@ -4,6 +4,6 @@ import { SensorService } from './sensor.service';
 
 @Module({
   controllers: [SensorController],
-  providers: [SensorService]
+  providers: [SensorService],
 })
 export class SensorModule {}
