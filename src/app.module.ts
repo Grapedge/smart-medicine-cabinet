@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { DeviceModule } from './device/device.module';
 import { CabinetModule } from './cabinet/cabinet.module';
 import { SensorModule } from './sensor/sensor.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -32,7 +31,6 @@ import type { DatabaseConfig } from './config/database.config';
       },
       inject: [ConfigService],
     }),
-    DeviceModule,
     CabinetModule,
     SensorModule,
     UserModule,
