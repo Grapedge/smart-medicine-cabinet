@@ -1,9 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import type { Document } from 'mongoose';
-import type { IUserInfo } from './user.interface';
 
-@Schema()
-export class User implements IUserInfo {
+@Schema({
+  toJSON: {
+    transform: (_, user) => ({
+      phone: user.phone,
+      name: user.name,
+    }),
+  },
+})
+export class User {
+  @ApiProperty({
+    example: '13311112222',
+  })
   @Prop({
     required: true,
     length: 11,
@@ -12,6 +22,9 @@ export class User implements IUserInfo {
   })
   phone: string;
 
+  @ApiProperty({
+    example: '李华',
+  })
   @Prop({
     required: true,
     minlength: 2,
@@ -21,8 +34,9 @@ export class User implements IUserInfo {
 
   @Prop({
     required: true,
+    select: false,
   })
-  password: string;
+  password?: string;
 }
 
 export type UserDocument = User & Document;

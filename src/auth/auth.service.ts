@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import type { AuthConfig } from 'src/config/auth.config';
 import type { Configuration } from 'src/config/configuration';
-import type { IUserInfo } from 'src/user/user.interface';
+import { User } from 'src/user/user.schema';
 import { UserService } from 'src/user/user.service';
 
 @Injectable()
@@ -18,14 +18,11 @@ export class AuthService {
     this.authConfig = configService.get<AuthConfig>('auth');
   }
 
-  async validateUser(
-    phone: string,
-    password: string,
-  ): Promise<IUserInfo | null> {
+  async validateUser(phone: string, password: string): Promise<User> {
     return this.userService.findAndValidate(phone, password);
   }
 
-  async signAccessToken(user: IUserInfo) {
+  async signAccessToken(user: User) {
     return this.jwtService.sign(
       {
         name: user.name,

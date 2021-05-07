@@ -1,46 +1,57 @@
 import {
   Body,
+  ConflictException,
   Controller,
   Get,
   NotFoundException,
   Param,
   Post,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiConflictResponse,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { JwtAuth } from 'src/core/decorators/jwt-auth.decorator';
 import { CurUser } from 'src/core/decorators/user.decorator';
-import { CreateUserDto, CreateUserRsp } from './dto/create-user.dto';
-import { GetUserInfoRsp } from './dto/get-user-info.dto';
-import type { IUserInfo } from './user.interface';
+import { CreateUserDto } from './dto/create-user.dto';
+import { User } from './user.schema';
 import { UserService } from './user.service';
 
 @ApiTags('用户')
-@Controller()
+@Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Post('/sign-up')
-  async register(@Body() createUserDto: CreateUserDto): Promise<CreateUserRsp> {
-    const user = await this.userService.create(createUserDto);
-    return {
-      name: user.name,
-      phone: user.phone,
-    };
-  }
-
-  @Get('/users/:phone')
-  @JwtAuth()
-  async getUserInfo(@Param('phone') phone: string): Promise<GetUserInfoRsp> {
-    const user = await this.userService.findByPhone(phone);
-    if (!user) {
-      throw new NotFoundException('用户不存在', 'user_not_found');
+  @Post()
+  @ApiConflictResponse()
+  async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+    const isExists = await this.userService.isExists(createUserDto.phone);
+    if (isExists) {
+      throw new ConflictException('手机号已存在');
     }
+    const user = await this.userService.createOne(createUserDto);
     return user;
   }
 
-  @Get('/user')
+  @Get('profile')
   @JwtAuth()
-  getSelf(@CurUser() user: IUserInfo): GetUserInfoRsp {
+  @ApiOperation({
+    description: '获取当前登录用户的用户信息',
+  })
+  async getProfile(@CurUser() { phone }: User): Promise<User> {
+    return this.userService.findByPhone(phone);
+  }
+
+  @Get(':phone')
+  @JwtAuth()
+  @ApiNotFoundResponse()
+  async findUser(@Param('phone') phone: string): Promise<User> {
+    const user = await this.userService.findByPhone(phone);
+    if (!user) {
+      throw new NotFoundException('用户不存在');
+    }
     return user;
   }
 }

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuth } from 'src/core/decorators/jwt-auth.decorator';
-import { IUserInfo } from 'src/user/user.interface';
+import { User } from 'src/user/user.schema';
 import { CurUser } from '../core/decorators/user.decorator';
 import { AuthService } from './auth.service';
 import { RefreshAccessTokenDto } from './dto/refresh-access-token.dto';
@@ -20,7 +20,7 @@ export class AuthController {
     description: '用户认证失败、用户手机不存在、用户密码错误',
   })
   async signIn(
-    @CurUser() user: IUserInfo,
+    @CurUser() user: User,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     @Body() _body: SignInDto,
   ): Promise<SignInRsp> {
