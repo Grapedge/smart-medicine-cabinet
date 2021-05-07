@@ -9,14 +9,18 @@ import type { User } from 'src/user/user.schema';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(configService: ConfigService<Configuration>) {
+    const authConfig = configService.get<AuthConfig>('auth');
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get<AuthConfig>('auth').secret,
+      secretOrKey: authConfig.secret,
     });
   }
 
   async validate(payload: any): Promise<User> {
-    return { phone: payload.sub, name: payload.name };
+    return {
+      phone: payload.sub,
+      name: payload.name,
+    };
   }
 }
