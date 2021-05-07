@@ -28,17 +28,19 @@ export class FindManyDto {
   sort?: string;
 }
 
-export class QueryRsp {
+export class FindManyRsp {
   @ApiProperty({
     example: 120,
   })
   total: number;
+
   @ApiProperty({
     minimum: 1,
     default: 1,
     example: 1,
   })
   current: number;
+
   @ApiProperty({
     maximum: 1000,
     default: 10,

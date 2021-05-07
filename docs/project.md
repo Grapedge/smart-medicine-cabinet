@@ -54,7 +54,7 @@ package 药品 {
   Admin --> (添加药品)
   Admin --> (修改药品)
   Admin --> (删除药品)
-  Admin --> (查询药品)
+  User --> (查询药品)
 }
 @enduml
 ```
@@ -70,10 +70,30 @@ entity 用户 {
   password
   role
 }
-entity 药品柜 {}
-entity 传感器 {}
 
-entity 药品 {}
+entity 药品柜 {
+  id
+  sensor
+  medicine
+  user
+  alarm
+}
+
+entity 传感器 {
+  mac
+  secret
+  data
+}
+
+entity 药品 {
+  id
+  name
+  summary
+  createdAt
+  updatedAt
+}
+
+note right of 药品 : 药品的元数据
 
 用户 "1" -- "n" 药品柜
 药品柜 "1" -- "n" 传感器

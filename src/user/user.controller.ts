@@ -17,7 +17,7 @@ import {
 } from '@nestjs/swagger';
 import { Roles } from 'src/core/decorators/roles.decorator';
 import { CurUser } from 'src/core/decorators/user.decorator';
-import { RemoveRsp } from 'src/core/dto/remove.dto';
+import { RemoveOneRsp } from 'src/core/dto/remove.dto';
 import { Role } from 'src/core/enums/role.enum';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -41,7 +41,7 @@ export class UserController {
   @Delete(':phone')
   @Roles(Role.Admin)
   @ApiNotFoundResponse()
-  async removeUser(@Param('phone') phone: string): Promise<RemoveRsp> {
+  async removeUser(@Param('phone') phone: string): Promise<RemoveOneRsp> {
     const isExists = await this.userService.isExists(phone);
     if (!isExists) throw new NotFoundException();
     await this.userService.removeOne(phone);

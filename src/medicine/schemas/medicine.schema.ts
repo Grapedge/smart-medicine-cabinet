@@ -32,11 +32,9 @@ export class Medicine {
   })
   summary: string; // 药品简介
 
-  @Prop()
   @ApiProperty()
   createdAt: Date;
 
-  @Prop()
   @ApiProperty()
   updatedAt: Date;
 }

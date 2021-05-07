@@ -1,3 +1,3 @@
-export class RemoveRsp {
+export class RemoveOneRsp {
   deleted: string;
 }
