@@ -21,6 +21,7 @@ function createOpenApiDocument(app: INestApplication) {
     .addBasicAuth()
     .addTag('身份认证')
     .addTag('用户')
+    .addTag('药品')
     .build();
   return SwaggerModule.createDocument(app, config);
 }
@@ -35,7 +36,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
       exceptionFactory: (errors) =>
         new BadRequestException(
-          errors.map((error) => `${error.property} 字段验证失败`).join('; '),
+          errors.map((error) => `${error.property} 字段输入不合法`).join('; '),
           '请求非法',
         ),
     }),

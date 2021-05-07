@@ -27,6 +27,7 @@ import type { DatabaseConfig } from './config/database.config';
         return {
           uri: mongoDbUri,
           useCreateIndex: true,
+          useFindAndModify: false,
         };
       },
       inject: [ConfigService],
