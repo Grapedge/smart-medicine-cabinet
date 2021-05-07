@@ -28,7 +28,7 @@ export class AuthService {
         name: user.name,
       },
       {
-        issuer: 'smart_medicine_cabinet',
+        issuer: this.authConfig.issuer,
         subject: user.phone,
         secret: this.authConfig.secret,
         expiresIn: this.authConfig.accessTokenExpiresIn,
@@ -40,7 +40,7 @@ export class AuthService {
     return this.jwtService.sign(
       {},
       {
-        issuer: 'smart_medicine_cabinet',
+        issuer: this.authConfig.issuer,
         subject: phone,
         secret: this.authConfig.secret,
         expiresIn: this.authConfig.refreshTokenExpiresIn,
