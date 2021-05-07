@@ -1,8 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { FindManyDto } from 'src/core/dto/find-many.dto';
-import { queryBuilder } from 'src/core/utils/query-builder';
+import { findManyHelper } from 'src/core/utils/find-many-helper';
 import { CreateMedicineDto } from './dto/create-medicine.dto';
 import { UpdateMedicineDto } from './dto/update-medicine.dto';
 import { Medicine, MedicineDocument } from './schemas/medicine.schema';
@@ -13,10 +13,12 @@ export class MedicineService {
     @InjectModel(Medicine.name) private medicineModel: Model<MedicineDocument>,
   ) {}
 
-  async has(id: string) {
-    return !!(await this.medicineModel.countDocuments({
-      _id: id,
-    }));
+  async isExists(id: string) {
+    return this.medicineModel.countDocuments(
+      this.medicineModel.translateAliases({
+        id,
+      }),
+    );
   }
 
   async total() {
@@ -27,8 +29,8 @@ export class MedicineService {
     return this.medicineModel.findById(id);
   }
 
-  async findMany(query: FindManyDto) {
-    return queryBuilder(this.medicineModel, query);
+  async findMany(findManyDto: FindManyDto) {
+    return findManyHelper(this.medicineModel.find(), findManyDto);
   }
 
   async createOne(createMedicineDto: CreateMedicineDto) {

@@ -42,9 +42,10 @@ export class UserController {
   @Roles(Role.Admin)
   @ApiNotFoundResponse()
   async removeUser(@Param('phone') phone: string): Promise<RemoveOneRsp> {
-    const isExists = await this.userService.isExists(phone);
-    if (!isExists) throw new NotFoundException();
-    await this.userService.removeOne(phone);
+    const user = await this.userService.removeOne(phone);
+    if (!user) {
+      throw new NotFoundException();
+    }
     return {
       deleted: phone,
     };
@@ -62,9 +63,11 @@ export class UserController {
     if (curUser.role === Role.User && curUser.phone !== phone) {
       throw new ForbiddenException();
     }
-    const isExists = await this.userService.isExists(phone);
-    if (!isExists) throw new NotFoundException();
-    return this.userService.updateOne(phone, updateUserDto);
+    const user = await this.userService.updateOne(phone, updateUserDto);
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return user;
   }
 
   @Get(':phone')
@@ -77,8 +80,10 @@ export class UserController {
     if (curUser.role === Role.User && curUser.phone !== phone) {
       throw new ForbiddenException();
     }
-    const isExists = await this.userService.isExists(phone);
-    if (!isExists) throw new NotFoundException();
-    return this.userService.findByPhone(phone);
+    const user = await this.userService.findByPhone(phone);
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return user;
   }
 }

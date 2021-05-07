@@ -41,8 +41,7 @@ export class MedicineController {
   async createMedicine(
     @Body() createMedicineDto: CreateMedicineDto,
   ): Promise<Medicine> {
-    const medicine = await this.medicineService.createOne(createMedicineDto);
-    return medicine;
+    return this.medicineService.createOne(createMedicineDto);
   }
 
   @Get(':id')
