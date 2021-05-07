@@ -22,6 +22,8 @@ server:
   host: 127.0.0.1
   port: 8080
   openApiPath: /api # Swagger UI path
+  adminPhone: 13300001111 # init admin phone
+  adminPassword: admin # init admin password
 database: # MongoDB
   host: 127.0.0.1
   port: 27019
