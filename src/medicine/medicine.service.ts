@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { QueryDto } from 'src/core/dto/query.dto';
+import { FindManyDto } from 'src/core/dto/find-many.dto';
 import { queryBuilder } from 'src/core/utils/query-builder';
 import { CreateMedicineDto } from './dto/create-medicine.dto';
 import { UpdateMedicineDto } from './dto/update-medicine.dto';
@@ -27,7 +27,7 @@ export class MedicineService {
     return this.medicineModel.findById(id);
   }
 
-  async findMany(query: QueryDto) {
+  async findMany(query: FindManyDto) {
     return queryBuilder(this.medicineModel, query);
   }
 

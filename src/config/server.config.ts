@@ -1,4 +1,4 @@
-import { IsNumber, IsString, Matches } from 'class-validator';
+import { IsNumber, IsPhoneNumber, IsString, Matches } from 'class-validator';
 
 export class ServerConfig {
   @IsString()
@@ -9,4 +9,10 @@ export class ServerConfig {
 
   @Matches(/^\//)
   openApiPath: string;
+
+  @IsPhoneNumber('CN')
+  adminPhone: string;
+
+  @IsString()
+  adminPassword: string;
 }

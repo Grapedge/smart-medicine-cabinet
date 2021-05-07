@@ -68,7 +68,6 @@ entity 用户 {
   phone
   name
   password
-  cabinets
   role
 }
 entity 药品柜 {}

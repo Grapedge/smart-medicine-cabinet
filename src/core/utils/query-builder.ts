@@ -1,9 +1,9 @@
 import { Document, Model } from 'mongoose';
-import { QueryDto } from '../dto/query.dto';
+import { FindManyDto } from '../dto/find-many.dto';
 
 export function queryBuilder<T extends Document>(
   model: Model<T>,
-  query: QueryDto,
+  query: FindManyDto,
 ) {
   let builder = model.find();
   if (query.sort && query.sort.length > 0) {

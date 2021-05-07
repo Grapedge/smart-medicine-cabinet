@@ -2,13 +2,13 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
 
-export class QueryDto {
+export class FindManyDto {
   @IsOptional()
   @IsNumber()
   @Min(1)
   @Type(() => Number)
   @ApiPropertyOptional()
-  current: number = 1;
+  current = 1;
 
   @IsOptional()
   @IsNumber()
@@ -16,7 +16,7 @@ export class QueryDto {
   @Min(0)
   @Type(() => Number)
   @ApiPropertyOptional()
-  pageSize: number = 10;
+  pageSize = 10;
 
   @IsString()
   @IsOptional()

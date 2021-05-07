@@ -1,34 +1,37 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import type { Document } from 'mongoose';
+import { Role } from 'src/core/enums/role.enum';
 
 @Schema({
   toJSON: {
     transform: (_, user) => ({
-      phone: user.phone,
+      phone: user._id,
       name: user.name,
+      role: user.role,
     }),
   },
 })
 export class User {
+  @Prop({
+    length: 11,
+    match: /^1[3-9]\d{9}$/,
+    alias: 'phone',
+  })
+  _id?: string;
+
   @ApiProperty({
     example: '13311112222',
   })
-  @Prop({
-    required: true,
-    length: 11,
-    match: /^1[3-9]\d{9}$/,
-    unique: true,
-  })
   phone: string;
 
-  @ApiProperty({
-    example: '李华',
-  })
   @Prop({
     required: true,
     minlength: 2,
     maxlength: 20,
+  })
+  @ApiProperty({
+    example: '李华',
   })
   name: string;
 
@@ -38,6 +41,15 @@ export class User {
     index: true,
   })
   password?: string;
+
+  @Prop({
+    required: true,
+    default: Role.User,
+  })
+  @ApiProperty({
+    enum: Role,
+  })
+  role: Role;
 }
 
 export type UserDocument = User & Document;

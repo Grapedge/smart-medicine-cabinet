@@ -10,8 +10,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { DeleteRsp } from 'src/core/dto/delete.dto';
-import { QueryDto } from 'src/core/dto/query.dto';
+import { RemoveRsp } from 'src/core/dto/remove.dto';
+import { FindManyDto } from 'src/core/dto/find-many.dto';
 import { ValidMongoIdPipe } from 'src/core/pipes/valid-mongo-id.pipe';
 import { CreateMedicineDto } from './dto/create-medicine.dto';
 import { GetMedicineRsp } from './dto/get-medicine.dto';
@@ -45,7 +45,7 @@ export class MedicineController {
   }
 
   @Get()
-  async findMany(@Query() query: QueryDto): Promise<GetMedicineRsp> {
+  async findMany(@Query() query: FindManyDto): Promise<GetMedicineRsp> {
     const [total, data] = await Promise.all([
       this.medicineService.total(),
       this.medicineService.findMany(query),
@@ -73,7 +73,7 @@ export class MedicineController {
   @Delete(':id')
   async removeOne(
     @Param('id', ValidMongoIdPipe) id: string,
-  ): Promise<DeleteRsp> {
+  ): Promise<RemoveRsp> {
     const medicine = await this.medicineService.removeOne(id);
     if (!medicine) {
       throw new NotFoundException();

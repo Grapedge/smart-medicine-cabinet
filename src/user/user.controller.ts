@@ -1,11 +1,16 @@
+import { subject } from '@casl/ability';
 import {
   Body,
   ConflictException,
   Controller,
+  Delete,
+  ForbiddenException,
   Get,
   NotFoundException,
   Param,
+  Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import {
   ApiConflictResponse,
@@ -14,8 +19,12 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtAuth } from 'src/core/decorators/jwt-auth.decorator';
+import { Roles } from 'src/core/decorators/roles.decorator';
 import { CurUser } from 'src/core/decorators/user.decorator';
+import { RemoveRsp } from 'src/core/dto/remove.dto';
+import { Role } from 'src/core/enums/role.enum';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.schema';
 import { UserService } from './user.service';
 
@@ -25,33 +34,55 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post()
+  @Roles(Role.Admin)
   @ApiConflictResponse()
   async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     const isExists = await this.userService.isExists(createUserDto.phone);
-    if (isExists) {
-      throw new ConflictException('手机号已存在');
-    }
-    const user = await this.userService.createOne(createUserDto);
-    return user;
+    if (isExists) throw new ConflictException('手机号已存在，不能重复添加');
+    return this.userService.createOne(createUserDto);
   }
 
-  @Get('profile')
-  @JwtAuth()
-  @ApiOperation({
-    description: '获取当前登录用户的用户信息',
-  })
-  async getProfile(@CurUser() { phone }: User): Promise<User> {
-    return this.userService.findByPhone(phone);
+  @Delete(':phone')
+  @Roles(Role.Admin)
+  @ApiNotFoundResponse()
+  async removeUser(@Param('phone') phone: string): Promise<RemoveRsp> {
+    const isExists = await this.userService.isExists(phone);
+    if (!isExists) throw new NotFoundException();
+    await this.userService.removeOne(phone);
+    return {
+      deleted: phone,
+    };
+  }
+
+  @Patch(':phone')
+  @Roles(Role.Admin, Role.User)
+  @ApiNotFoundResponse()
+  async updateUser(
+    @CurUser() curUser: User,
+    @Param('phone') phone: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise<User> {
+    console.log(curUser.phone, phone);
+    if (curUser.role === Role.User && curUser.phone !== phone) {
+      throw new ForbiddenException();
+    }
+    const isExists = await this.userService.isExists(phone);
+    if (!isExists) throw new NotFoundException();
+    return this.userService.updateOne(phone, updateUserDto);
   }
 
   @Get(':phone')
-  @JwtAuth()
+  @Roles(Role.Admin, Role.User)
   @ApiNotFoundResponse()
-  async findUser(@Param('phone') phone: string): Promise<User> {
-    const user = await this.userService.findByPhone(phone);
-    if (!user) {
-      throw new NotFoundException('用户不存在');
+  async findUser(
+    @CurUser() curUser: User,
+    @Param('phone') phone: string,
+  ): Promise<User> {
+    if (curUser.role === Role.User && curUser.phone !== phone) {
+      throw new ForbiddenException();
     }
-    return user;
+    const isExists = await this.userService.isExists(phone);
+    if (!isExists) throw new NotFoundException();
+    return this.userService.findByPhone(phone);
   }
 }
