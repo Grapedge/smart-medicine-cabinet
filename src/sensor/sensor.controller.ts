@@ -37,6 +37,9 @@ export class SensorController {
 
   @Post(':mac')
   @SensorAuth()
+  @ApiOperation({
+    description: '提交温湿度信息',
+  })
   @ApiForbiddenResponse()
   @ApiNotFoundResponse()
   async appendSensorData(
