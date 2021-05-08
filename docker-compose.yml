@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: smc_prod
+    image: smc-prod:1.0.0
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    command: npm run start:prod
+    ports:
+      - 8080:8080
+    networks:
+      - smc-network
+    restart: unless-stopped
+  db:
+    image: mongo
+    container_name: smc_mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - smc_data:/data/db
+    networks:
+      - smc-network
+    ports:
+      - '27019:27017'
+    restart: always
+networks:
+  smc-network:
+volumes:
+  smc_data:
