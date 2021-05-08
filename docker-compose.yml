@@ -9,6 +9,8 @@ services:
       target: production
       dockerfile: ./Dockerfile
     command: npm run start:prod
+    volumes:
+      - /usr/app/smart-medicine-cabinet:/usr/src/app
     ports:
       - 8080:8080
     networks:
@@ -25,7 +27,7 @@ services:
     networks:
       - smc-network
     ports:
-      - '27019:27017'
+      - 27019:27017
     restart: always
 networks:
   smc-network:
