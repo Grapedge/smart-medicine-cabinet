@@ -1,21 +1,23 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNumber } from 'class-validator';
 import * as mongoose from 'mongoose';
-import { Medicine } from 'src/medicine/schemas/medicine.schema';
-import { Sensor } from 'src/sensor/schemas/sensor.schema';
-import { User } from 'src/user/schemas/user.schema';
-
 @Schema()
 export class AlarmLimit {
   @Prop({
     required: true,
     default: () => 35,
   })
+  @ApiProperty()
+  @IsNumber()
   temperature: number;
 
   @Prop({
     required: true,
     default: () => 50,
   })
+  @ApiProperty()
+  @IsNumber()
   humidity: number;
 }
 
@@ -23,42 +25,42 @@ export type AlarmLimitDocuemnt = AlarmLimit & mongoose.Document;
 export const AlarmLimitSchema = SchemaFactory.createForClass(AlarmLimit);
 
 @Schema()
+export class CabinetMedicineData {
+  @Prop({
+    required: true,
+  })
+  count: number;
+  @Prop({
+    required: true,
+  })
+  medicineId: string;
+}
+
+export const CabinetMedicineDataSchema = SchemaFactory.createForClass(
+  CabinetMedicineData,
+);
+@Schema()
 export class Cabinet {
-  @Prop({
-    required: true,
-    default: () => [],
-    type: [
-      {
-        ref: Sensor.name,
-        type: String,
-      },
-    ],
-  })
-  sensor: Sensor[];
+  id: mongoose.ObjectId;
 
   @Prop({
     required: true,
     default: () => [],
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: Medicine.name,
-      },
-    ],
   })
-  medicine: Medicine[];
+  sensor: string[];
+
+  @Prop({
+    default: () => ({}),
+    type: Map,
+    of: CabinetMedicineDataSchema,
+  })
+  medicine: Map<string, CabinetMedicineData>;
 
   @Prop({
     required: true,
     default: () => [],
-    type: [
-      {
-        type: String,
-        ref: User.name,
-      },
-    ],
   })
-  user: User[];
+  user: string[];
 
   @Prop({
     required: true,

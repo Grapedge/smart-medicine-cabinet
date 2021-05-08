@@ -15,5 +15,6 @@ import { Medicine, MedicineSchema } from './schemas/medicine.schema';
   ],
   controllers: [MedicineController],
   providers: [MedicineService],
+  exports: [MedicineService],
 })
 export class MedicineModule {}

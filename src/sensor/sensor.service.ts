@@ -65,4 +65,16 @@ export class SensorService {
     );
     return sensor;
   }
+
+  async findSensorData(mac: string, from: Date, to: Date) {
+    const sensor = await this.sensorModel.findById(mac);
+    return sensor.data.filter((data) => {
+      return data.createdAt >= from && data.createdAt < to;
+    });
+  }
+
+  async findLatestSensorData(mac: string) {
+    const sensor = await this.sensorModel.findById(mac);
+    return sensor.data[sensor.data.length - 1];
+  }
 }
