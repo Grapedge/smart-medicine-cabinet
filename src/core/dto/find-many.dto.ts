@@ -7,7 +7,9 @@ export class FindManyDto {
   @IsNumber()
   @Min(1)
   @Type(() => Number)
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: Number,
+  })
   current = 1;
 
   @IsOptional()
@@ -15,7 +17,9 @@ export class FindManyDto {
   @Max(1000)
   @Min(0)
   @Type(() => Number)
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: Number,
+  })
   pageSize = 10;
 
   @IsString()

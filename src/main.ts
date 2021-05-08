@@ -22,6 +22,8 @@ function createOpenApiDocument(app: INestApplication) {
     .addTag('身份认证')
     .addTag('用户')
     .addTag('药品')
+    .addTag('传感器')
+    .addTag('药品柜')
     .build();
   return SwaggerModule.createDocument(app, config);
 }
