@@ -3,6 +3,7 @@ import {
   ConflictException,
   Controller,
   Delete,
+  ForbiddenException,
   Get,
   NotFoundException,
   Param,
@@ -11,11 +12,13 @@ import {
 } from '@nestjs/common';
 import {
   ApiConflictResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { Roles } from 'src/core/decorators/roles.decorator';
+import { SensorAuth } from 'src/core/decorators/sensor-auth.decorator';
 import { CurUser } from 'src/core/decorators/user.decorator';
 import { FindManyDto } from 'src/core/dto/find-many.dto';
 import { RemoveOneRsp } from 'src/core/dto/remove.dto';
@@ -33,12 +36,17 @@ export class SensorController {
   constructor(private sensorService: SensorService) {}
 
   @Post(':mac')
-  // TODO: 加入机器认证
+  @SensorAuth()
+  @ApiForbiddenResponse()
   @ApiNotFoundResponse()
   async appendSensorData(
+    @CurUser() sensor: Sensor,
     @Param('mac') mac: string,
     @Body() appendDataDto: AppendSensorDataDto,
   ): Promise<Record<string, never>> {
+    if (sensor.mac !== mac) {
+      throw new ForbiddenException();
+    }
     const isExists = await this.sensorService.isExists(mac);
     if (!isExists) {
       throw new NotFoundException();

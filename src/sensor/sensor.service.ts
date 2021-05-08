@@ -25,16 +25,16 @@ export class SensorService {
     );
   }
 
-  async findOne(mac: string): Promise<SensorDocument> {
+  async findOne(mac: string): Promise<Sensor> {
     return this.sensorModel.findById(mac);
   }
 
-  async createOne(createSensorDto: CreateSensorDto): Promise<SensorDocument> {
+  async createOne(createSensorDto: CreateSensorDto): Promise<Sensor> {
     const sensor = new this.sensorModel(createSensorDto);
     return sensor.save();
   }
 
-  async removeOne(mac: string): Promise<SensorDocument> {
+  async removeOne(mac: string): Promise<Sensor> {
     return this.sensorModel.findOneAndDelete(
       this.sensorModel.translateAliases({
         mac,
@@ -51,8 +51,18 @@ export class SensorService {
     await sensor.save();
   }
 
-  async findMany(findManyDto: FindManyDto): Promise<SensorDocument[]> {
-    const builder = this.sensorModel.find();
+  async findMany(findManyDto: FindManyDto): Promise<Sensor[]> {
+    const builder = this.sensorModel.find().select('+secret');
     return findManyHelper(builder, findManyDto);
+  }
+
+  async validateSensor(mac: string, secret: string): Promise<Sensor> {
+    const sensor = await this.sensorModel.findOne(
+      this.sensorModel.translateAliases({
+        mac,
+        secret,
+      }),
+    );
+    return sensor;
   }
 }

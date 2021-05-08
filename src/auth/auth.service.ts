@@ -3,6 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import type { AuthConfig } from 'src/config/auth.config';
 import type { Configuration } from 'src/config/configuration';
+import { Sensor } from 'src/sensor/schemas/sensor.schema';
+import { SensorService } from 'src/sensor/sensor.service';
 import { User } from 'src/user/schemas/user.schema';
 import { UserService } from 'src/user/user.service';
 
@@ -12,6 +14,7 @@ export class AuthService {
 
   constructor(
     private userService: UserService,
+    private sensorService: SensorService,
     private jwtService: JwtService,
     configService: ConfigService<Configuration>,
   ) {
@@ -60,5 +63,9 @@ export class AuthService {
         'refresh_token_invalid',
       );
     }
+  }
+
+  async validateSensor(mac: string, secret: string): Promise<Sensor> {
+    return this.sensorService.validateSensor(mac, secret);
   }
 }

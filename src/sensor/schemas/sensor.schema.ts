@@ -33,6 +33,7 @@ export const SensorDataSchema = SchemaFactory.createForClass(SensorData);
     transform: (_, sensor) => ({
       mac: sensor._id,
       name: sensor.name,
+      secret: sensor.secret,
     }),
   },
 })
