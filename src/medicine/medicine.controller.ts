@@ -35,7 +35,7 @@ export class MedicineController {
   @Post()
   @Roles(Role.Admin)
   @ApiOperation({
-    description: '创建一个药品',
+    summary: '【管理员】创建一个药品',
   })
   @ApiConflictResponse()
   async createMedicine(
@@ -46,6 +46,9 @@ export class MedicineController {
 
   @Get(':id')
   @JwtAuth()
+  @ApiOperation({
+    summary: '查看药品信息',
+  })
   @ApiNotFoundResponse()
   async findMedicine(
     @Param('id', ValidMongoIdPipe) id: string,
@@ -59,6 +62,9 @@ export class MedicineController {
 
   @Get()
   @JwtAuth()
+  @ApiOperation({
+    summary: '查看药品列表',
+  })
   async findManyMedicine(
     @Query() query: FindManyDto,
   ): Promise<FindManyMedicineRsp> {
@@ -76,6 +82,9 @@ export class MedicineController {
 
   @Put(':id')
   @Roles(Role.Admin)
+  @ApiOperation({
+    summary: '【管理员】更新药品信息',
+  })
   @ApiNotFoundResponse()
   async updateMedicine(
     @Param('id', ValidMongoIdPipe) id: string,
@@ -90,6 +99,9 @@ export class MedicineController {
 
   @Delete(':id')
   @Roles(Role.Admin)
+  @ApiOperation({
+    summary: '【管理员】移除药品',
+  })
   @ApiNotFoundResponse()
   async removeOne(
     @Param('id', ValidMongoIdPipe) id: string,

@@ -16,7 +16,7 @@ export class AuthController {
   @Post('sign-in')
   @LocalAuth()
   @ApiOperation({
-    description: '登录系统',
+    summary: '登录系统',
   })
   @ApiBody({
     type: SignInDto,
@@ -32,6 +32,7 @@ export class AuthController {
 
   @Post('refresh')
   @ApiOperation({
+    summary: '刷新令牌',
     description:
       '当用户 accessToken 失效后，使用刷新令牌进行获取新的 accessToken',
   })
@@ -51,8 +52,7 @@ export class AuthController {
   @JwtAuth()
   @Get('test-jwt')
   @ApiOperation({
-    description:
-      '简单返回当前登录用户的手机号与名称，仅用作判断身份是否已验证使用',
+    summary: '【测试接口】仅用于测试认证是否有效',
   })
   async testJwt(@CurUser() user) {
     return user;

@@ -13,6 +13,7 @@ import {
 import {
   ApiConflictResponse,
   ApiNotFoundResponse,
+  ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { Roles } from 'src/core/decorators/roles.decorator';
@@ -31,6 +32,9 @@ export class UserController {
 
   @Post()
   @Roles(Role.Admin)
+  @ApiOperation({
+    summary: '【管理员】创建用户',
+  })
   @ApiConflictResponse()
   async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     const isExists = await this.userService.isExists(createUserDto.phone);
@@ -40,6 +44,9 @@ export class UserController {
 
   @Delete(':phone')
   @Roles(Role.Admin)
+  @ApiOperation({
+    summary: '【管理员】删除用户',
+  })
   @ApiNotFoundResponse()
   async removeUser(@Param('phone') phone: string): Promise<RemoveOneRsp> {
     const user = await this.userService.removeOne(phone);
@@ -53,13 +60,19 @@ export class UserController {
 
   @Patch(':phone')
   @Roles(Role.Admin, Role.User)
+  @ApiOperation({
+    summary: '更新用户信息',
+    description: '普通用户仅能更新自己的信息，role 字段仅管理员生效',
+  })
   @ApiNotFoundResponse()
   async updateUser(
     @CurUser() curUser: User,
     @Param('phone') phone: string,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<User> {
-    console.log(curUser.phone, phone);
+    if (curUser.role === Role.User) {
+      updateUserDto.role = curUser.role;
+    }
     if (curUser.role === Role.User && curUser.phone !== phone) {
       throw new ForbiddenException();
     }
@@ -72,6 +85,10 @@ export class UserController {
 
   @Get(':phone')
   @Roles(Role.Admin, Role.User)
+  @ApiOperation({
+    summary: '查找用户',
+    description: '普通用户仅能查看自己的用户信息',
+  })
   @ApiNotFoundResponse()
   async findUser(
     @CurUser() curUser: User,

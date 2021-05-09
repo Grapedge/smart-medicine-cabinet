@@ -38,7 +38,9 @@ export class SensorController {
   @Post(':mac')
   @SensorAuth()
   @ApiOperation({
-    description: '提交温湿度信息',
+    summary: '【传感器】提交温湿度信息',
+    description:
+      '传感器需要使用 HTTP Basic 认证，用户名为 MAC 地址，密码为创建传感器时生成的密钥 secret',
   })
   @ApiForbiddenResponse()
   @ApiNotFoundResponse()
@@ -61,7 +63,7 @@ export class SensorController {
   @Post()
   @Roles(Role.Admin)
   @ApiOperation({
-    description: '创建一个传感器',
+    summary: '【管理员】创建传感器',
   })
   @ApiConflictResponse()
   async createSensor(
@@ -81,6 +83,9 @@ export class SensorController {
 
   @Delete(':mac')
   @Roles(Role.Admin)
+  @ApiOperation({
+    summary: '【管理员】删除传感器',
+  })
   @ApiNotFoundResponse()
   async removeSensor(@Param('mac') mac: string): Promise<RemoveOneRsp> {
     const sensor = await this.sensorService.removeOne(mac);
@@ -94,6 +99,9 @@ export class SensorController {
 
   @Get(':mac')
   @Roles(Role.Admin, Role.User)
+  @ApiOperation({
+    summary: '获取传感器基本信息',
+  })
   @ApiNotFoundResponse()
   async findSensor(
     @CurUser() user: User,
@@ -108,6 +116,10 @@ export class SensorController {
 
   @Get()
   @Roles(Role.Admin)
+  @ApiOperation({
+    summary: '【管理员】查看传感器列表',
+    description: '此接口会展示传感器的密钥',
+  })
   async findManySensor(
     @Query() findManyDto: FindManyDto,
   ): Promise<FindManySensorRsp> {

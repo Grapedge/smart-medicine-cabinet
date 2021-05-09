@@ -15,7 +15,9 @@ import type { ServerConfig } from './config/server.config';
 function createOpenApiDocument(app: INestApplication) {
   const config = new DocumentBuilder()
     .setTitle('智能药品柜服务')
-    .setDescription('服务开发技术智能药品柜接口文档')
+    .setDescription(
+      '服务开发技术智能药品柜接口文档，默认管理员账号: 13300001111，密码: admin',
+    )
     .setVersion('1.0')
     .addBearerAuth()
     .addBasicAuth()

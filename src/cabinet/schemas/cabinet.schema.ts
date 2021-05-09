@@ -29,10 +29,12 @@ export class CabinetMedicineData {
   @Prop({
     required: true,
   })
+  @ApiProperty()
   count: number;
   @Prop({
     required: true,
   })
+  @ApiProperty()
   medicineId: string;
 }
 

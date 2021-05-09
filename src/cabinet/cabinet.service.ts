@@ -1,6 +1,7 @@
 import { Injectable, PreconditionFailedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Role } from 'src/core/enums/role.enum';
 import { Medicine } from 'src/medicine/schemas/medicine.schema';
 import { Sensor } from 'src/sensor/schemas/sensor.schema';
 import { SensorService } from 'src/sensor/sensor.service';
@@ -42,6 +43,7 @@ export class CabinetService {
   }
 
   async canManage(cabinetId: string, user: User) {
+    if (user.role === Role.Admin) return true;
     const cabinet = await this.cabinetModel.findById(cabinetId);
     return cabinet.user.includes(user.phone);
   }
@@ -67,7 +69,10 @@ export class CabinetService {
         this.sensorService.findSensorData(mac, from, to),
       ),
     );
-    return datas;
+    return cabinet.sensor.map((mac, i) => ({
+      mac,
+      data: datas[i],
+    }));
   }
 
   async putMedicine(cabinetId: string, medicine: Medicine, putCnt = 1) {
