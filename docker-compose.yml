@@ -4,32 +4,21 @@ services:
   app:
     container_name: smc_prod
     image: smc-prod:1.0.0
-    build:
-      context: .
-      target: production
-      dockerfile: ./Dockerfile
+    build: .
     command: npm run start:prod
-    volumes:
-      - /usr/app/smart-medicine-cabinet:/usr/src/app
     ports:
       - 8080:8080
     networks:
-      - smc-network
+      - backend
     restart: always
   db:
     image: mongo
-    container_name: smc_mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
     volumes:
       - smc_data:/data/db
     networks:
-      - smc-network
-    ports:
-      - 27019:27017
+      - backend
     restart: always
 networks:
-  smc-network:
+  backend:
 volumes:
   smc_data:
