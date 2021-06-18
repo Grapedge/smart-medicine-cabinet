@@ -47,14 +47,14 @@ async function bootstrap() {
   );
 
   const configService = app.get<ConfigService<Configuration>>(ConfigService);
-  const { host, port, openApiPath } = configService.get<ServerConfig>('server');
+  const { port, openApiPath } = configService.get<ServerConfig>('server');
 
   const openApiDoc = createOpenApiDocument(app);
   SwaggerModule.setup(openApiPath, app, openApiDoc);
   await app.listen(port);
-  Logger.log(`App is running at http://${host}:${port}`);
+  Logger.log(`App is running at ${await app.getUrl()}`);
   Logger.log(
-    `OpenAPI Document is running at http://${host}:${port}${openApiPath}`,
+    `OpenAPI Document is running at ${await app.getUrl()}${openApiPath}`,
   );
 }
 

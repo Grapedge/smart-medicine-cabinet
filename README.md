@@ -25,11 +25,12 @@ server:
   adminPhone: 13300001111 # init admin phone
   adminPassword: admin # init admin password
 database: # MongoDB
-  host: 127.0.0.1
-  port: 27019
-  user: smart-medicine-cabinet
-  password: Your Mongo DB Password
-  database: smart-medicine-cabinet
+  url: mongodb://localhost:27017/db
+  # host: 127.0.0.1
+  # port: 27019
+  # user: smart-medicine-cabinet
+  # password: Your Mongo DB Password
+  # database: smart-medicine-cabinet
 auth:
   issuer: smart-medicine-cabinet
   secret: HelloWorld

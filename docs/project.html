@@ -1,0 +1,483 @@
+<!DOCTYPE html><html><head>
+      <title>project</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/grapes/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.5.21/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E6%99%BA%E8%83%BD%E8%8D%AF%E5%93%81%E6%9F%9C%E7%B3%BB%E7%BB%9F">&#x667A;&#x80FD;&#x836F;&#x54C1;&#x67DC;&#x7CFB;&#x7EDF;</h1>
+
+<h2 class="mume-header" id="%E7%94%A8%E4%BE%8B">&#x7528;&#x4F8B;</h2>
+
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="1835px" preserveAspectRatio="none" style="width:384px;height:1835px;" version="1.1" viewBox="0 0 384 1835" width="384px" zoomAndPan="magnify"><defs><filter height="300%" id="f812qq41k1v3b" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[432e95682550deb4fa3b1581b538f195]
+cluster 用户--><polygon fill="#FFFFFF" filter="url(#f812qq41k1v3b)" points="130,1062,164,1062,171,1084.4883,329,1084.4883,329,1412,130,1412,130,1062" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="130" x2="171" y1="1084.4883" y2="1084.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="28" x="134" y="1077.5352">&#x7528;&#x6237;</text><!--MD5=[3e0395160363511e42c81f9a4f34fb40]
+cluster 鉴权--><polygon fill="#FFFFFF" filter="url(#f812qq41k1v3b)" points="182,1675,216,1675,223,1697.4883,277,1697.4883,277,1820,182,1820,182,1675" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="182" x2="223" y1="1697.4883" y2="1697.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="28" x="186" y="1690.5352">&#x9274;&#x6743;</text><!--MD5=[4feecb7b7965507892320354edc61199]
+cluster 药品柜--><polygon fill="#FFFFFF" filter="url(#f812qq41k1v3b)" points="92,6,140,6,147,28.4883,367,28.4883,367,741,92,741,92,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="92" x2="147" y1="28.4883" y2="28.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="42" x="96" y="21.5352">&#x836F;&#x54C1;&#x67DC;</text><!--MD5=[aa5acdb662567484a93fe5a903921473]
+cluster 传感器--><polygon fill="#FFFFFF" filter="url(#f812qq41k1v3b)" points="142,1436,190,1436,197,1458.4883,317,1458.4883,317,1651,142,1651,142,1436" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="142" x2="197" y1="1458.4883" y2="1458.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="42" x="146" y="1451.5352">&#x4F20;&#x611F;&#x5668;</text><!--MD5=[538776b38f0a9da0f0db64ba60f9d074]
+cluster 药品--><polygon fill="#FFFFFF" filter="url(#f812qq41k1v3b)" points="162,765,196,765,203,787.4883,297,787.4883,297,1038,162,1038,162,765" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="162" x2="203" y1="787.4883" y2="787.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="28" x="166" y="780.5352">&#x836F;&#x54C1;</text><ellipse cx="229.2674" cy="1317.2036" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="51.2674" ry="14.7036" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="198.2893" y="1321.2167">&#x6DFB;&#x52A0;&#x7528;&#x6237;</text><ellipse cx="229.2674" cy="1381.2036" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="51.2674" ry="14.7036" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="198.2893" y="1385.2167">&#x5220;&#x9664;&#x7528;&#x6237;</text><ellipse cx="229.5361" cy="1186.2072" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="66.5361" ry="15.7072" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="184.5361" y="1190.2248">&#x4FEE;&#x6539;&#x7528;&#x6237;&#x4FE1;&#x606F;</text><ellipse cx="229.5361" cy="1252.2072" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="66.5361" ry="15.7072" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="184.5361" y="1256.2248">&#x83B7;&#x53D6;&#x7528;&#x6237;&#x4FE1;&#x606F;</text><ellipse cx="229.375" cy="1116.075" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="83.375" ry="19.075" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="166.375" y="1119.366">&#x4FEE;&#x6539;&#x81EA;&#x5DF1;&#x7684;&#x7528;&#x6237;&#x4FE1;&#x606F;</text><ellipse cx="229.2843" cy="1789.159" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="31.2843" ry="14.659" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="215.2843" y="1792.45">&#x767B;&#x5F55;</text><ellipse cx="229.2843" cy="1725.159" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="31.2843" ry="14.659" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="215.2843" y="1728.45">&#x8BA4;&#x8BC1;</text><ellipse cx="229.6033" cy="500.7838" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="61.6033" ry="14.7838" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="70" x="191.6033" y="504.8013">&#x6DFB;&#x52A0;&#x836F;&#x54C1;&#x67DC;</text><ellipse cx="229.6033" cy="565.7838" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="61.6033" ry="14.7838" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="70" x="191.6033" y="569.8013">&#x5220;&#x9664;&#x836F;&#x54C1;&#x67DC;</text><ellipse cx="229.6723" cy="638.0345" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="95.6723" ry="21.5345" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="154" x="152.6723" y="641.3255">&#x6388;&#x6743;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x836F;&#x54C1;&#x67DC;&#x8D44;&#x6E90;</text><ellipse cx="229.6033" cy="709.7838" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="61.6033" ry="14.7838" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="70" x="191.6033" y="713.8013">&#x7ED1;&#x5B9A;&#x4F20;&#x611F;&#x5668;</text><ellipse cx="229.4067" cy="68.1813" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="121.4067" ry="26.6813" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="210" x="124.4067" y="71.4724">&#x67E5;&#x770B;&#x836F;&#x54C1;&#x67DC;&#x4F20;&#x611F;&#x5668;&#x6570;&#x636E;&#xFF08;&#x542B;&#x5386;&#x53F2;&#xFF09;</text><ellipse cx="229.7483" cy="146.2497" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="71.7483" ry="16.7497" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="179.8633" y="149.7768">&#x653E;&#x5165;&#x836F;&#x54C1;&#x5230;&#x67DC;&#x5185;</text><ellipse cx="229.4523" cy="215.8905" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="77.4523" ry="17.8905" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="173.4523" y="219.1815">&#x4ECE;&#x836F;&#x54C1;&#x67DC;&#x53D6;&#x51FA;&#x836F;&#x54C1;</text><ellipse cx="229.4523" cy="286.8905" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="77.4523" ry="17.8905" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="173.4523" y="290.1815">&#x67E5;&#x770B;&#x67DC;&#x5185;&#x836F;&#x54C1;&#x4FE1;&#x606F;</text><ellipse cx="229.375" cy="359.075" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="83.375" ry="19.075" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="166.375" y="362.366">&#x8BBE;&#x7F6E;&#x836F;&#x54C1;&#x67DC;&#x62A5;&#x8B66;&#x754C;&#x9650;</text><ellipse cx="229.375" cy="432.075" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="83.375" ry="19.075" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="166.375" y="435.366">&#x67E5;&#x770B;&#x836F;&#x54C1;&#x67DC;&#x62A5;&#x8B66;&#x4FE1;&#x606F;</text><ellipse cx="229.6033" cy="1485.7838" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="61.6033" ry="14.7838" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="70" x="191.6033" y="1489.8013">&#x6DFB;&#x52A0;&#x4F20;&#x611F;&#x5668;</text><ellipse cx="229.6033" cy="1550.7838" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="61.6033" ry="14.7838" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="70" x="191.6033" y="1554.8013">&#x5220;&#x9664;&#x4F20;&#x611F;&#x5668;</text><ellipse cx="229.7483" cy="1618.2497" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="71.7483" ry="16.7497" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="179.8633" y="1621.7768">&#x4E0A;&#x4F20;&#x4F20;&#x611F;&#x5668;&#x6570;&#x636E;</text><ellipse cx="229.2674" cy="1007.2036" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="51.2674" ry="14.7036" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="198.2893" y="1011.2167">&#x6DFB;&#x52A0;&#x836F;&#x54C1;</text><ellipse cx="229.2674" cy="879.2036" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="51.2674" ry="14.7036" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="198.2893" y="883.2167">&#x4FEE;&#x6539;&#x836F;&#x54C1;</text><ellipse cx="229.2674" cy="943.2036" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="51.2674" ry="14.7036" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="198.2893" y="947.2167">&#x5220;&#x9664;&#x836F;&#x54C1;</text><ellipse cx="229.2674" cy="815.2036" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="51.2674" ry="14.7036" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="198.2893" y="819.2167">&#x67E5;&#x8BE2;&#x836F;&#x54C1;</text><!--MD5=[97ab183161fd5d1db7fba7485cf76add]
+entity Admin--><ellipse cx="27" cy="976" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M27,984 L27,1011 M14,992 L40,992 M27,1011 L14,1026 M27,1011 L40,1026 " fill="none" filter="url(#f812qq41k1v3b)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="6" y="1045.0352">&#x7BA1;&#x7406;&#x5458;</text><!--MD5=[fee662a292a0353a69bd162820bae93b]
+entity User--><ellipse cx="27" cy="292" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M27,300 L27,327 M14,308 L40,308 M27,327 L14,342 M27,327 L40,342 " fill="none" filter="url(#f812qq41k1v3b)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="13" y="361.0352">&#x7528;&#x6237;</text><!--MD5=[9eecb807d8a7c1ba44cb916f191401d3]
+entity Guest--><ellipse cx="27" cy="1758" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M27,1766 L27,1793 M14,1774 L40,1774 M27,1793 L14,1808 M27,1793 L40,1808 " fill="none" filter="url(#f812qq41k1v3b)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="13" y="1827.0352">&#x8BBF;&#x5BA2;</text><!--MD5=[94b3b673d5a236560eff806941c90c67]
+entity Sensor--><ellipse cx="27" cy="1614" fill="#FEFECE" filter="url(#f812qq41k1v3b)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M27,1622 L27,1649 M14,1630 L40,1630 M27,1649 L14,1664 M27,1649 L40,1664 " fill="none" filter="url(#f812qq41k1v3b)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="6" y="1683.0352">&#x4F20;&#x611F;&#x5668;</text><!--MD5=[d346907b8aab77cfebf85ef4b7d97f76]
+link Admin to 添加用户--><path d="M30.83,1047.61 C36.46,1116.45 51.46,1251.83 84,1285 C106.88,1308.32 142.67,1316.37 172.91,1318.56 " fill="none" id="Admin-to-&#x6DFB;&#x52A0;&#x7528;&#x6237;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="178.1,1318.89,169.3695,1314.3317,173.1099,1318.5754,168.8662,1322.3159,178.1,1318.89" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[daf8e1ba0f174f6c775cc1c5d83c40c1]
+link Admin to 删除用户--><path d="M29.12,1047.8 C32.21,1128.9 43.53,1306.22 84,1349 C106.62,1372.91 142.78,1380.91 173.26,1382.92 " fill="none" id="Admin-to-&#x5220;&#x9664;&#x7528;&#x6237;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="178.5,1383.22,169.7301,1378.738,173.5074,1382.949,169.2964,1386.7263,178.5,1383.22" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c860d144d127c71dea2f0539b11d1435]
+link Admin to 修改用户信息--><path d="M33.22,1047.65 C39.59,1080.5 53.58,1125.5 84,1152 C104.4,1169.78 132.38,1178.69 158.28,1183.02 " fill="none" id="Admin-to-&#x4FEE;&#x6539;&#x7528;&#x6237;&#x4FE1;&#x606F;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="163.43,1183.83,155.1545,1178.49,158.4898,1183.059,153.9208,1186.3943,163.43,1183.83" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[acd64d5c75e1eaff1046bb2a2a5f90d1]
+link Admin to 获取用户信息--><path d="M33.72,1047.95 C42.18,1102.68 59.71,1195.52 84,1219 C103.51,1237.86 131.47,1246.79 157.61,1250.76 " fill="none" id="Admin-to-&#x83B7;&#x53D6;&#x7528;&#x6237;&#x4FE1;&#x606F;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="162.81,1251.49,154.4598,1246.2675,157.8594,1250.7889,153.338,1254.1885,162.81,1251.49" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[96e38e77e9fe7bb6fc19846c9773a80e]
+link User to 修改自己的用户信息--><path d="M28.94,363.78 C32.54,507.01 47.15,981.39 84,1038 C103.71,1068.28 139.31,1087.69 170.24,1099.58 " fill="none" id="User-to-&#x4FEE;&#x6539;&#x81EA;&#x5DF1;&#x7684;&#x7528;&#x6237;&#x4FE1;&#x606F;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="175.17,1101.42,168.1475,1094.5146,170.4884,1099.6644,165.3385,1102.0052,175.17,1101.42" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[f1ef7bac644a6412d5949e0567a80742]
+link Guest to 登录--><path d="M41.78,1789 C72.54,1789 147.59,1789 192.62,1789 " fill="none" id="Guest-to-&#x767B;&#x5F55;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="197.69,1789,188.69,1785,192.69,1789,188.69,1793,197.69,1789" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e4ffdb29bfb0925872e55e43c0fad0b1]
+link Sensor to 认证--><path d="M48.33,1653.11 C84.3,1667.46 159.23,1697.36 200.21,1713.71 " fill="none" id="Sensor-to-&#x8BA4;&#x8BC1;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="205.04,1715.64,198.1506,1708.6018,200.3927,1713.7954,195.1992,1716.0375,205.04,1715.64" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[123a0eaa212595e7001792771b8acccc]
+link Admin to 添加药品柜--><path d="M30.14,966.23 C36.24,857.19 55.13,564.92 84,533 C103.79,511.11 134.91,502.42 163.21,499.5 " fill="none" id="Admin-to-&#x6DFB;&#x52A0;&#x836F;&#x54C1;&#x67DC;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="168.46,499.01,159.1315,495.8509,163.481,499.4678,159.8641,503.8173,168.46,499.01" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[149f6cbc424f7ada01759fd9d620f9a2]
+link Admin to 删除药品柜--><path d="M27.92,966.28 C28.61,873.84 35.42,652.06 84,599 C103.88,577.29 134.84,568.39 163.01,565.19 " fill="none" id="Admin-to-&#x5220;&#x9664;&#x836F;&#x54C1;&#x67DC;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="168.23,564.66,158.8662,561.6073,163.2565,565.1745,159.6894,569.5649,168.23,564.66" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8c355326b4011e8eb24d512d03141de4]
+link Admin to 授权用户访问药品柜资源--><path d="M29.56,966.26 C33.41,887.58 45.99,718.82 84,677 C97.37,662.29 115.66,652.88 134.73,646.93 " fill="none" id="Admin-to-&#x6388;&#x6743;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x836F;&#x54C1;&#x67DC;&#x8D44;&#x6E90;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="139.59,645.49,129.8264,644.1968,134.7939,646.9031,132.0875,651.8706,139.59,645.49" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[39bb962ab668283e0699e9b3e2da2095]
+link Admin to 绑定传感器--><path d="M28.41,966.39 C30.93,918.02 41.77,837.12 84,784 C108.64,753.01 149.76,733.75 181.84,722.67 " fill="none" id="Admin-to-&#x7ED1;&#x5B9A;&#x4F20;&#x611F;&#x5668;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="186.91,720.97,177.1036,720.0567,182.1723,722.5683,179.6608,727.637,186.91,720.97" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[444877c416fa17bcfc2181cd58c7be13]
+link User to 查看药品柜传感器数据（含历史）--><path d="M27.6,282.43 C29.37,235.29 39.54,158.1 84,112 C95.38,100.2 109.83,91.53 125.16,85.18 " fill="none" id="User-to-&#x67E5;&#x770B;&#x836F;&#x54C1;&#x67DC;&#x4F20;&#x611F;&#x5668;&#x6570;&#x636E;&#xFF08;&#x542B;&#x5386;&#x53F2;&#xFF09;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="129.94,83.29,120.0996,82.8821,125.2908,85.1297,123.0432,90.3209,129.94,83.29" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[dd28fc3d2702844ff92e06c4afcf6a3c]
+link User to 放入药品到柜内--><path d="M33.51,282.25 C40.03,249.9 54.09,205.94 84,180 C103.27,163.29 129.23,154.42 153.84,149.82 " fill="none" id="User-to-&#x653E;&#x5165;&#x836F;&#x54C1;&#x5230;&#x67DC;&#x5185;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="159.07,148.91,149.5177,146.5112,154.1439,149.7667,150.8885,154.3929,159.07,148.91" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[a836b7b586c4768831e9fb7686c57cd3]
+link User to 从药品柜取出药品--><path d="M41.67,297.73 C51.45,281.99 66.04,262.6 84,251 C104.64,237.66 129.92,229.4 153.54,224.29 " fill="none" id="User-to-&#x4ECE;&#x836F;&#x54C1;&#x67DC;&#x53D6;&#x51FA;&#x836F;&#x54C1;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="158.55,223.25,148.9202,221.1842,153.6566,224.2772,150.5637,229.0136,158.55,223.25" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0df6d649334ba8369e233e5e653ef5fa]
+link User to 查看柜内药品信息--><path d="M41.78,320.53 C66.4,316.11 119.42,306.59 162.69,298.82 " fill="none" id="User-to-&#x67E5;&#x770B;&#x67DC;&#x5185;&#x836F;&#x54C1;&#x4FE1;&#x606F;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="167.64,297.93,158.0732,295.5898,162.7193,298.8169,159.4922,303.4629,167.64,297.93" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0199e2e4d2880e287d76f2a7cb18c863]
+link User to 设置药品柜报警界限--><path d="M41.78,325.47 C65.59,329.75 115.94,338.79 158.36,346.41 " fill="none" id="User-to-&#x8BBE;&#x7F6E;&#x836F;&#x54C1;&#x67DC;&#x62A5;&#x8B66;&#x754C;&#x9650;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="163.49,347.33,155.3394,341.8012,158.5688,346.4456,153.9244,349.675,163.49,347.33" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[23bcb28aea36aba72fea654371ec5597]
+link User to 查看药品柜报警信息--><path d="M41.51,347.85 C51.31,363.61 65.99,383.19 84,395 C103.73,407.93 127.72,416.35 150.44,421.82 " fill="none" id="User-to-&#x67E5;&#x770B;&#x836F;&#x54C1;&#x67DC;&#x62A5;&#x8B66;&#x4FE1;&#x606F;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="155.57,423.01,147.7215,417.0601,150.7022,421.868,145.8943,424.8486,155.57,423.01" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[2ff37aac38e4e2758aa816fc27d92852]
+link Admin to 添加传感器--><path d="M28.95,1047.67 C31.79,1138.41 42.8,1353.98 84,1412 C106.77,1444.07 147.65,1463.16 180.13,1473.9 " fill="none" id="Admin-to-&#x6DFB;&#x52A0;&#x4F20;&#x611F;&#x5668;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="185.26,1475.55,177.9094,1468.9949,180.4984,1474.0246,175.4687,1476.6135,185.26,1475.55" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[edb282f02b726cf4a8b5111bcd314f1f]
+link Admin to 删除传感器--><path d="M29.77,1047.59 C35.16,1162.33 52.87,1483.06 84,1518 C103.66,1540.07 134.76,1548.98 163.09,1552.09 " fill="none" id="Admin-to-&#x5220;&#x9664;&#x4F20;&#x611F;&#x5668;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="168.34,1552.61,159.7716,1547.7538,163.3637,1552.1238,158.9937,1555.7159,168.34,1552.61" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[2630afdaecaf6916678a51ef74499797]
+link Sensor to 上传传感器数据--><path d="M48.33,1642.26 C74.82,1638.7 122.43,1632.28 162.05,1626.95 " fill="none" id="Sensor-to-&#x4E0A;&#x4F20;&#x4F20;&#x611F;&#x5668;&#x6570;&#x636E;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="167.34,1626.24,157.8846,1623.4842,162.3852,1626.9111,158.9583,1631.4118,167.34,1626.24" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5d8fff6ec4cb205a2dbf654fb29ceb9a]
+link Admin to 添加药品--><path d="M48.33,1007 C77.16,1007 131.02,1007 172.37,1007 " fill="none" id="Admin-to-&#x6DFB;&#x52A0;&#x836F;&#x54C1;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="177.61,1007,168.61,1003,172.61,1007,168.61,1011,177.61,1007" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e55e0b6fb5b5709566a15b752f88ba93]
+link Admin to 修改药品--><path d="M42.78,966.06 C51.82,946.59 65.3,924.65 84,911 C109.5,892.39 143.8,884.28 172.59,880.87 " fill="none" id="Admin-to-&#x4FEE;&#x6539;&#x836F;&#x54C1;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="177.9,880.28,168.519,877.2806,172.9295,880.8228,169.3874,885.2333,177.9,880.28" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bfbbb7aea5a7f480535460d7eb1b3634]
+link Admin to 删除药品--><path d="M48.01,993.6 C58.38,987.17 71.47,979.84 84,975 C114.24,963.32 149.76,955.38 178.02,950.33 " fill="none" id="Admin-to-&#x5220;&#x9664;&#x836F;&#x54C1;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="183.21,949.42,173.651,947.0481,178.2864,950.2906,175.0439,954.9259,183.21,949.42" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[a4873ae671b7176131e2e2b7ec07b49a]
+link User to 查询药品--><path d="M28.74,363.58 C31.18,456.38 41.42,680.76 84,741 C107.73,774.56 151.31,793.9 184.43,804.33 " fill="none" id="User-to-&#x67E5;&#x8BE2;&#x836F;&#x54C1;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="189.24,805.8,181.813,799.3317,184.4608,804.3306,179.4619,806.9784,189.24,805.8" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5be17fd6cdd507b6b089c490a0d61605]
+@startuml
+left to right direction
+actor 管理员 as Admin
+actor 用户 as User
+actor 访客 as Guest
+
+actor 传感器 as Sensor
+
+package 用户 {
+  Admin - -> (添加用户)
+  Admin - -> (删除用户)
+  Admin - -> (修改用户信息)
+  Admin - -> (获取用户信息)
+  User - -> (修改自己的用户信息)
+}
+
+package 鉴权 {
+  Guest - -> (登录)
+  Sensor - -> (认证)
+}
+
+package 药品柜 {
+  ' 药品柜资源管理
+  Admin - -> (添加药品柜)
+  Admin - -> (删除药品柜)
+  Admin - -> (授权用户访问药品柜资源)
+
+  ' 传感器
+  Admin - -> (绑定传感器)
+  User - -> (查看药品柜传感器数据（含历史）)
+
+  ' 药品数据
+  User - -> (放入药品到柜内)
+  User - -> (从药品柜取出药品)
+  User - -> (查看柜内药品信息)
+
+  ' 报警数据
+  User - -> (设置药品柜报警界限)
+  User - -> (查看药品柜报警信息)
+}
+
+package 传感器 {
+  Admin - -> (添加传感器)
+  Admin - -> (删除传感器)
+  Sensor - -> (上传传感器数据)
+}
+
+package 药品 {
+  Admin - -> (添加药品)
+  Admin - -> (修改药品)
+  Admin - -> (删除药品)
+  User - -> (查询药品)
+}
+@enduml
+
+@startuml
+left to right direction
+actor 管理员 as Admin
+actor 用户 as User
+actor 访客 as Guest
+
+actor 传感器 as Sensor
+
+package 用户 {
+  Admin - -> (添加用户)
+  Admin - -> (删除用户)
+  Admin - -> (修改用户信息)
+  Admin - -> (获取用户信息)
+  User - -> (修改自己的用户信息)
+}
+
+package 鉴权 {
+  Guest - -> (登录)
+  Sensor - -> (认证)
+}
+
+package 药品柜 {
+  Admin - -> (添加药品柜)
+  Admin - -> (删除药品柜)
+  Admin - -> (授权用户访问药品柜资源)
+
+  Admin - -> (绑定传感器)
+  User - -> (查看药品柜传感器数据（含历史）)
+
+  User - -> (放入药品到柜内)
+  User - -> (从��品柜取出药品)
+  User - -> (查看柜内药品信息)
+
+  User - -> (设置药品柜报警界限)
+  User - -> (查看药品柜报警信息)
+}
+
+package 传感器 {
+  Admin - -> (添加传感器)
+  Admin - -> (删除传感器)
+  Sensor - -> (上传传感器数据)
+}
+
+package 药品 {
+  Admin - -> (添加药品)
+  Admin - -> (修改药品)
+  Admin - -> (删除药品)
+  User - -> (查询药品)
+}
+@enduml
+
+PlantUML version 1.2020.26(Tue Dec 22 01:45:07 CST 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg></p><h2 class="mume-header" id="%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%B3%E7%B3%BB">&#x6A21;&#x5F0F;&#x4E0E;&#x5173;&#x7CFB;</h2>
+
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="255px" preserveAspectRatio="none" style="width:495px;height:255px;" version="1.1" viewBox="0 0 495 255" width="495px" zoomAndPan="magnify"><defs><filter height="300%" id="f1h9gorpl4jm9z" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[0ecb45e58a8c426c34b62eb4fd135e4a]
+class 用户--><rect codeline="2" fill="#FEFECE" filter="url(#f1h9gorpl4jm9z)" height="99.8203" id="&#x7528;&#x6237;" style="stroke:#A80036;stroke-width:1.5;" width="64" x="7" y="68.5"/><ellipse cx="25.6" cy="84.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M29.2143,91 L21.4945,91 L21.4945,78.6069 L29.2143,78.6069 L29.2143,80.7651 L23.9433,80.7651 L23.9433,83.438 L28.7162,83.438 L28.7162,85.5962 L23.9433,85.5962 L23.9433,88.8418 L29.2143,88.8418 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="24" x="40.4" y="89.0352">&#x7528;&#x6237;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="70" y1="100.5" y2="100.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="34" x="13" y="115.1348">phone</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="29" x="13" y="128.0898">name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="52" x="13" y="141.0449">password</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="21" x="13" y="154">role</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="70" y1="160.3203" y2="160.3203"/><!--MD5=[722b7b01e1b2528cb62c78091e910610]
+class 药品柜--><rect codeline="9" fill="#FEFECE" filter="url(#f1h9gorpl4jm9z)" height="112.7754" id="&#x836F;&#x54C1;&#x67DC;" style="stroke:#A80036;stroke-width:1.5;" width="68" x="131" y="62"/><ellipse cx="146" cy="78" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M149.6143,84.5 L141.8945,84.5 L141.8945,72.1069 L149.6143,72.1069 L149.6143,74.2651 L144.3433,74.2651 L144.3433,76.938 L149.1162,76.938 L149.1162,79.0962 L144.3433,79.0962 L144.3433,82.3418 L149.6143,82.3418 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="160" y="82.5352">&#x836F;&#x54C1;&#x67DC;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="132" x2="198" y1="94" y2="94"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="10" x="137" y="108.6348">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="37" x="137" y="121.5898">sensor</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="48" x="137" y="134.5449">medicine</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="24" x="137" y="147.5">user</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="30" x="137" y="160.4551">alarm</text><line style="stroke:#A80036;stroke-width:1.5;" x1="132" x2="198" y1="166.7754" y2="166.7754"/><!--MD5=[80aa505dbc05cfa9d41da2b71fdc8065]
+class 传感器--><rect codeline="17" fill="#FEFECE" filter="url(#f1h9gorpl4jm9z)" height="86.8652" id="&#x4F20;&#x611F;&#x5668;" style="stroke:#A80036;stroke-width:1.5;" width="68" x="259" y="7"/><ellipse cx="274" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M277.6143,29.5 L269.8945,29.5 L269.8945,17.1069 L277.6143,17.1069 L277.6143,19.2651 L272.3433,19.2651 L272.3433,21.938 L277.1162,21.938 L277.1162,24.0962 L272.3433,24.0962 L272.3433,27.3418 L277.6143,27.3418 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="288" y="27.5352">&#x4F20;&#x611F;&#x5668;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="260" x2="326" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="22" x="265" y="53.6348">mac</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="33" x="265" y="66.5898">secret</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="23" x="265" y="79.5449">data</text><line style="stroke:#A80036;stroke-width:1.5;" x1="260" x2="326" y1="85.8652" y2="85.8652"/><!--MD5=[57f8a469b7674d0761db3988708f7c81]
+class 药品--><rect codeline="23" fill="#FEFECE" filter="url(#f1h9gorpl4jm9z)" height="112.7754" id="&#x836F;&#x54C1;" style="stroke:#A80036;stroke-width:1.5;" width="68" x="259" y="129"/><ellipse cx="279.4" cy="145" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M283.0143,151.5 L275.2945,151.5 L275.2945,139.1069 L283.0143,139.1069 L283.0143,141.2651 L277.7433,141.2651 L277.7433,143.938 L282.5162,143.938 L282.5162,146.0962 L277.7433,146.0962 L277.7433,149.3418 L283.0143,149.3418 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="24" x="294.6" y="149.5352">&#x836F;&#x54C1;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="260" x2="326" y1="161" y2="161"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="10" x="265" y="175.6348">id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="29" x="265" y="188.5898">name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="50" x="265" y="201.5449">summary</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="52" x="265" y="214.5">createdAt</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="56" x="265" y="227.4551">updatedAt</text><line style="stroke:#A80036;stroke-width:1.5;" x1="260" x2="326" y1="233.7754" y2="233.7754"/><path d="M387,173 L387,181.5 L327.18,185.5 L387,189.5 L387,198.3105 A0,0 0 0 0 387,198.3105 L486,198.3105 A0,0 0 0 0 486,198.3105 L486,183 L476,173 L387,173 A0,0 0 0 0 387,173 " fill="#FBFB77" filter="url(#f1h9gorpl4jm9z)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M476,173 L476,183 L486,183 L476,173 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="78" x="393" y="190.5684">&#x836F;&#x54C1;&#x7684;&#x5143;&#x6570;&#x636E;</text><!--MD5=[3dcf5a554492fbf938b82380d46937a8]
+link 用户 to 药品柜--><path codeline="33" d="M71.29,118.5 C89.51,118.5 112.47,118.5 130.98,118.5 " fill="none" id="&#x7528;&#x6237;-&#x836F;&#x54C1;&#x67DC;" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="78.7748" y="132.6658">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="115.1384" y="132.6704">n</text><!--MD5=[653e5ec5a3633875a6b07eb757f2ae92]
+link 药品柜 to 传感器--><path codeline="34" d="M199.11,100.63 C217.48,90.72 240.27,78.42 258.68,68.48 " fill="none" id="&#x836F;&#x54C1;&#x67DC;-&#x4F20;&#x611F;&#x5668;" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="206.9702" y="111.1147">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="242.7765" y="86.3495">n</text><!--MD5=[d8e824232cd0e366ea09e61fb665ffd7]
+link 药品柜 to 药品--><path codeline="35" d="M199.11,136.1 C217.48,145.87 240.27,157.99 258.68,167.78 " fill="none" id="&#x836F;&#x54C1;&#x67DC;-&#x836F;&#x54C1;" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="206.9702" y="153.9004">n</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="242.7765" y="178.2957">n</text><!--MD5=[c51b8bbd14866a53e1d96421018bcb47]
+@startuml
+left to right direction
+entity 用户 {
+  phone
+  name
+  password
+  role
+}
+
+entity 药品柜 {
+  id
+  sensor
+  medicine
+  user
+  alarm
+}
+
+entity 传感器 {
+  mac
+  secret
+  data
+}
+
+entity 药品 {
+  id
+  name
+  summary
+  createdAt
+  updatedAt
+}
+
+note right of 药品 : 药品的元数据
+
+用户 "1" - - "n" 药品柜
+药品柜 "1" - - "n" 传感器
+药品柜 "n" - - "n" 药品
+@enduml
+
+PlantUML version 1.2020.26(Tue Dec 22 01:45:07 CST 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg></p>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

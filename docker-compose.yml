@@ -15,7 +15,7 @@ services:
       - 8080:8080
     networks:
       - smc-network
-    restart: unless-stopped
+    restart: always
   db:
     image: mongo
     container_name: smc_mongo

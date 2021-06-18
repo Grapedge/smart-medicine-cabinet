@@ -1,18 +1,18 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class DatabaseConfig {
   @IsString()
-  host: string;
+  url: string;
 
-  @IsNumber()
-  port: number;
+  // @IsNumber()
+  // port: number;
 
-  @IsString()
-  user: string;
+  // @IsString()
+  // user: string;
 
-  @IsString()
-  password: string;
+  // @IsString()
+  // password: string;
 
-  @IsString()
-  database: string;
+  // @IsString()
+  // database: string;
 }

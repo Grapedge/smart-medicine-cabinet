@@ -21,8 +21,9 @@ import type { DatabaseConfig } from './config/database.config';
       imports: [ConfigService],
       useFactory: async (configService: ConfigService<Configuration>) => {
         const databaseConfig = configService.get<DatabaseConfig>('database');
-        const { user, password, host, port, database } = databaseConfig;
-        const mongoDbUri = `mongodb://${user}:${password}@${host}:${port}/${database}`;
+        // const { user, password, host, port, database } = databaseConfig;
+        // const mongoDbUri = `mongodb://${user}:${password}@${host}:${port}/${database}`;
+        const mongoDbUri = databaseConfig.url;
         return {
           uri: mongoDbUri,
           useCreateIndex: true,
