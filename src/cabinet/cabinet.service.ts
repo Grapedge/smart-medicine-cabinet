@@ -162,8 +162,8 @@ export class CabinetService {
     );
     return data.filter(
       (data) =>
-        (data.temperature && data.temperature >= alarm.temperature) ||
-        (data.humidity && data.humidity >= alarm.humidity),
+        (data && data.temperature >= alarm.temperature) ||
+        (data && data.humidity >= alarm.humidity),
     );
   }
 
