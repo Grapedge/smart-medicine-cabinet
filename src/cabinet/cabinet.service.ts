@@ -154,13 +154,16 @@ export class CabinetService {
       throw new NotFoundException('未找到药品柜');
     }
     const { alarm } = cabinet;
+    if (!alarm) {
+      throw new PreconditionFailedException('尚未设置传感器数据');
+    }
     const data = await Promise.all(
       cabinet.sensor.map((mac) => this.sensorService.findLatestSensorData(mac)),
     );
     return data.filter(
       (data) =>
-        data.temperature >= alarm.temperature ||
-        data.humidity >= alarm.humidity,
+        (data.temperature && data.temperature >= alarm.temperature) ||
+        (data.humidity && data.humidity >= alarm.humidity),
     );
   }
 
