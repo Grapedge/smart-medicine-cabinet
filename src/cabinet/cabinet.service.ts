@@ -5,7 +5,9 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { FindManyDto } from 'src/core/dto/find-many.dto';
 import { Role } from 'src/core/enums/role.enum';
+import { findManyHelper } from 'src/core/utils/find-many-helper';
 import { Medicine } from 'src/medicine/schemas/medicine.schema';
 import { Sensor } from 'src/sensor/schemas/sensor.schema';
 import { SensorService } from 'src/sensor/sensor.service';
@@ -160,5 +162,13 @@ export class CabinetService {
         data.temperature >= alarm.temperature ||
         data.humidity >= alarm.humidity,
     );
+  }
+
+  async total() {
+    return this.cabinetModel.countDocuments();
+  }
+
+  async findMany(findManyDto: FindManyDto) {
+    return findManyHelper(this.cabinetModel.find(), findManyDto);
   }
 }

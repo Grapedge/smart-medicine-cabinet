@@ -17,8 +17,10 @@ import {
   ApiPreconditionFailedResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtAuth } from 'src/core/decorators/jwt-auth.decorator';
 import { Roles } from 'src/core/decorators/roles.decorator';
 import { CurUser } from 'src/core/decorators/user.decorator';
+import { FindManyDto } from 'src/core/dto/find-many.dto';
 import { RemoveOneRsp } from 'src/core/dto/remove.dto';
 import { Role } from 'src/core/enums/role.enum';
 import { ValidMongoIdPipe } from 'src/core/pipes/valid-mongo-id.pipe';
@@ -30,6 +32,7 @@ import { CabinetService } from './cabinet.service';
 import { BindSensorDto } from './dto/bind-sensor.dto';
 import { BindUserDto } from './dto/bind-user.dto';
 import { CreateCabineetRsp } from './dto/create-cabinet.dto';
+import { FindManyCabinetRsp } from './dto/find-many-cabinet.dto';
 import { PutMedicineDto } from './dto/put-medicine.dto';
 import { ViewSensorDataRsp } from './dto/view-sensor.dto';
 import { AlarmLimit, CabinetMedicineData } from './schemas/cabinet.schema';
@@ -43,6 +46,26 @@ export class CabinetController {
     private sensorService: SensorService,
     private medicineService: MedicineService,
   ) {}
+
+  @Get()
+  @JwtAuth()
+  @ApiOperation({
+    summary: '查看药品柜列表',
+  })
+  async findManyCabinets(
+    @Query() query: FindManyDto,
+  ): Promise<FindManyCabinetRsp> {
+    const [total, data] = await Promise.all([
+      this.cabinetService.total(),
+      this.cabinetService.findMany(query),
+    ]);
+    return {
+      total,
+      current: query.current,
+      pageSize: query.pageSize,
+      data,
+    };
+  }
 
   @Post()
   @Roles(Role.Admin)
