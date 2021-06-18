@@ -10,6 +10,8 @@ import { configuration } from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
 import type { Configuration } from './config/configuration';
 import type { DatabaseConfig } from './config/database.config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -31,6 +33,9 @@ import type { DatabaseConfig } from './config/database.config';
         };
       },
       inject: [ConfigService],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../public'),
     }),
     CabinetModule,
     SensorModule,

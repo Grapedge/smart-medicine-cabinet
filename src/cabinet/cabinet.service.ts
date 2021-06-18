@@ -1,4 +1,8 @@
-import { Injectable, PreconditionFailedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  PreconditionFailedException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Role } from 'src/core/enums/role.enum';
@@ -30,6 +34,9 @@ export class CabinetService {
 
   async authForUser(cabinetId: string, user: User) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     if (!cabinet.user.includes(user.phone)) {
       cabinet.user.push(user.phone);
     }
@@ -38,6 +45,9 @@ export class CabinetService {
 
   async unauthForUser(cabinetId: string, user: User) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     cabinet.user = cabinet.user.filter((phone) => phone === user.phone);
     return cabinet.save();
   }
@@ -45,11 +55,17 @@ export class CabinetService {
   async canManage(cabinetId: string, user: User) {
     if (user.role === Role.Admin) return true;
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     return cabinet.user.includes(user.phone);
   }
 
   async bindSensor(cabinetId: string, sensor: Sensor) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     if (!cabinet.sensor.includes(sensor.mac)) {
       cabinet.sensor.push(sensor.mac);
     }
@@ -58,12 +74,18 @@ export class CabinetService {
 
   async unbindSensor(cabinetId: string, sensor: Sensor) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     cabinet.sensor = cabinet.sensor.filter((mac) => mac !== sensor.mac);
     return cabinet.save();
   }
 
   async findSensorData(cabinetId: string, from: Date, to: Date) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     const datas = await Promise.all(
       cabinet.sensor.map((mac) =>
         this.sensorService.findSensorData(mac, from, to),
@@ -90,6 +112,9 @@ export class CabinetService {
 
   async takeMedicine(cabinetId: string, medicin: Medicine, takeCnt = 1) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     const data = cabinet.medicine.get(medicin.id);
     if (!data || data.count < takeCnt) {
       throw new PreconditionFailedException('药品数量不足');
@@ -105,18 +130,27 @@ export class CabinetService {
 
   async findMedicine(cabinetId: string) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     console.log(cabinet.medicine.values());
     return Array.from(cabinet.medicine.values());
   }
 
   async setAlarm(cabinetId: string, limit: AlarmLimit) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     cabinet.alarm = limit;
     return cabinet.save();
   }
 
   async getAlarm(cabinetId: string) {
     const cabinet = await this.cabinetModel.findById(cabinetId);
+    if (!cabinet) {
+      throw new NotFoundException('未找到药品柜');
+    }
     const { alarm } = cabinet;
     const data = await Promise.all(
       cabinet.sensor.map((mac) => this.sensorService.findLatestSensorData(mac)),

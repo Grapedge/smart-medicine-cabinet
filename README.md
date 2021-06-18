@@ -19,7 +19,6 @@ modify the `config.yaml`, this is an example:
 
 ```yaml
 server:
-  host: 127.0.0.1
   port: 8080
   openApiPath: /api # Swagger UI path
   adminPhone: 13300001111 # init admin phone
